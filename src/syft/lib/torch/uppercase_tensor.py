@@ -28,6 +28,7 @@ class TorchTensorWrapper(StorableObject):
         self.value = value
 
     def _data_object2proto(self) -> Tensor_PB:
+        import pdb; pdb.set_trace()
         proto = Tensor_PB()
         proto.tensor.CopyFrom(protobuf_tensor_serializer(self.value))
 
@@ -42,6 +43,7 @@ class TorchTensorWrapper(StorableObject):
 
     @staticmethod
     def _data_proto2object(proto: Tensor_PB) -> th.Tensor:
+        import pdb; pdb.set_trace()
         tensor = protobuf_tensor_deserializer(proto.tensor)
         if proto.HasField("grad"):
             tensor.grad = protobuf_tensor_deserializer(proto.grad)
